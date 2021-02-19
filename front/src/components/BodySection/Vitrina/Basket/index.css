@@ -1,0 +1,94 @@
+.basket-wrap {
+    width: 100%;
+}
+
+.basket-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.basket-item {
+    display: flex;
+    border-bottom: solid 1px lightgrey;
+    justify-content: space-around;
+    height: 30px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.item-id {
+    flex: 1;
+    text-align: left;
+}
+
+.item-name {
+    flex: 1;
+    text-align: left;
+}
+
+.item-price {
+    flex: 1;
+    text-align: left;
+}
+
+.item-count {
+    margin: 10px;
+   
+}
+
+.item-plus-minus {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.btn-item {
+    color: #fefefe;
+    font-weight: 500;
+    font-family: system-ui;
+    border-radius: 5px;
+    background-color: gray;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .btn-item:hover {
+    transform: scale(1.03);
+  }
+
+  .btn-basket {
+    color: #fefefe;
+    font-weight: 500;
+    font-family: system-ui;
+    border-radius: 5px;
+    background-color: gray;
+    width: 190px;
+    height: 25px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 25px;
+  }
+  .btn-basket:hover {
+    transform: scale(1.03);
+  }
+
+  .minus:hover {
+    background-color: lightcoral;
+  }
+
+  .plus:hover {
+    background-color: lightgreen;
+    color: darkgray;
+  }
+  .delete:hover {
+    background-color: red;
+    color: darkgray;
+  }
+  .delete {
+      margin-left: 50px;
+  }
