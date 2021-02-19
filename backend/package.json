@@ -1,0 +1,84 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "start:app_in_docker": "nodemon",
+    "app:up-mongo": "docker run --rm --name app_mongo_db --network app_network -p 27017:27017 -e MONGO_INITDB_DATABASE=backend_app -d mongo || true",
+    "app:up-api": "docker run --rm -it --name app_api --network app_network -v $PWD:/usr/src/app -p 8888:8888 -d api:v1",
+    "app:create-network": "docker network create app_network || true",
+    "app:build-ts": "rm -rf ./build && tsc",
+    "app:build-image": "docker build -t api:v1 .",
+    "app:expand": "npm run app:create-network && npm run app:build-image",
+    "app:up": "npm run app:up-mongo && npm run app:up-api",
+    "app:dep": "docker exec app_api bash -ac 'npm i'",
+    "app:start": "docker exec app_api bash -ac 'npm run start:app_in_docker'",
+    "app:down": "docker stop app_api app_mongo_db",
+    "app:reload": "npm run app:down && npm run app:up && npm run app:start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:coursesjs/advanced-javascript/common/backend.git"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "commitizen.js"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "@hapi/hapi": "^19.1.1",
+    "@hapi/inert": "^6.0.1",
+    "@hapi/vision": "^6.0.0",
+    "@types/bcrypt": "^3.0.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/mongoose": "^5.10.3",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.1.0",
+    "hapi-auth-bearer-token": "^8.0.0",
+    "hapi-swagger": "^13.0.2",
+    "mongoose": "^5.11.12",
+    "mongose": "0.0.2-security",
+    "prettier": "1.19.1",
+    "typesafe-joi": "^2.1.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/hapi": "^18.0.4",
+    "@types/hapi__hapi": "^20.0.5",
+    "@types/hapi__inert": "^5.2.2",
+    "@types/hapi__vision": "^5.5.2",
+    "@types/hapi-auth-bearer-token": "^6.1.2",
+    "@types/jest": "25.1.3",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/node": "^14.14.22",
+    "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "2.22.0",
+    "@typescript-eslint/parser": "2.22.0",
+    "commitizen": "^4.1.2",
+    "cz-customizable": "^6.2.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-airbnb-typescript": "^6.3.1",
+    "eslint-config-airbnb-typescript-prettier": "^1.4.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-jest": "23.8.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "jest": "25.1.0",
+    "nodemon": "^2.0.4",
+    "prettier": "1.19.1",
+    "semver": "^7.3.2",
+    "ts-jest": "25.2.1",
+    "ts-node": "8.6.2",
+    "typescript": "3.8.3"
+  }
+}
